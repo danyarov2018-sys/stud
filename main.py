@@ -17,7 +17,7 @@ st.set_page_config(
     page_icon="🤖",
     layout="centered",
 )
-
+st.write("GROQ_API_KEY:", GROQ_API_KEY[:5] + "..." )
 # Load secrets (.env locally, st.secrets on Streamlit Cloud)
 try:
     secrets = dotenv_values(".env")
@@ -79,3 +79,4 @@ if user_prompt:
     st.session_state.chat_history.append(
         {"role": "assistant", "content": response}
     )
+
