@@ -3,7 +3,7 @@ import streamlit as st
 from dotenv import dotenv_values
 from groq import Groq
 
-# --- 1. Вспомогательная функция для потоковой передачи ---
+# 1. Вспомогательная функция для потоковой передачи
 
 def parse_groq_stream(stream):
     """Парсит чанки из потокового ответа Groq."""
@@ -13,7 +13,7 @@ def parse_groq_stream(stream):
             if delta and delta.content:
                 yield delta.content
 
-# --- 2. Конфигурация страницы и загрузка секретов ---
+# 2. Конфигурация страницы и загрузка секретов
 
 st.set_page_config(
     page_title="The Tech Buddy",
@@ -99,6 +99,7 @@ if user_prompt:
     st.session_state.chat_history.append(
         {"role": "assistant", "content": response}
     )
+
 
 
 
