@@ -17,7 +17,7 @@ st.set_page_config(
     page_icon="🤖",
     layout="centered",
 )
-st.write("GROQ_API_KEY:", GROQ_API_KEY[:5] + "..." )
+
 # Load secrets (.env locally, st.secrets on Streamlit Cloud)
 try:
     secrets = dotenv_values(".env")
@@ -25,7 +25,10 @@ try:
 except:
     secrets = st.secrets
     GROQ_API_KEY = secrets["GROQ_API_KEY"]
-
+if GROQ_API_KEY:
+    st.write("GROQ_API_KEY:", GROQ_API_KEY[:5] + "...")
+else:
+    st.error("GROQ_API_KEY не найден! Проверьте Secrets.")
 os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 INITIAL_RESPONSE = secrets["INITIAL_RESPONSE"]
@@ -79,4 +82,5 @@ if user_prompt:
     st.session_state.chat_history.append(
         {"role": "assistant", "content": response}
     )
+
 
